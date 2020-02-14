@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+    myreact:
+        image: node:latest
+        volumes:
+          - '.:/app/myreact'
+        ports:
+          - '8000:3000'
+    api:
+        image: gaby/node-web-app
+        ports:
+          - "5000:5000"
+        depends_on:
+          - mongo
+    mongo:
+        image: mongo
+        ports:
+            - "27017:27017"
